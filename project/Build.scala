@@ -5,18 +5,20 @@ import Keys._
 
 object MyBuild extends Build {
 
-	lazy val common = Project(
-											id="common",
-											base=file("common")
-	)
+	lazy val root = Project(
+										id="etl",
+										base=file(".")
+	) aggregate(persist, streamgraph) dependsOn(persist, streamgraph)
+
+	lazy val streamgraph = Project(
+											id="streamgraph",
+											base=file("StreamGraph")
+	) dependsOn(persist)
 
 	lazy val persist = Project(
 											id="persist",
-											base=file("persist")
-	) dependsOn(common)
+											base=file("Persist")
+	)
 
-	lazy val root = Project(
-										id="root",
-										base=file(".")
-	) aggregate(common, persist) dependsOn(common, persist)
+
 }

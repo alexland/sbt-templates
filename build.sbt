@@ -1,8 +1,6 @@
 
 
 
-name := "etl-stream-1"
-
 lazy val commonSettings = Seq(
 	organization := "org.dougybarbo",
 	version := "1.0-SNAPSHOT",
@@ -34,15 +32,16 @@ lazy val testDependencies = Seq(
 
 
 // projects in this build
-lazy val common = project.in(file("common"))
-	.dependsOn("persist")
+lazy val streamgraph = project.in(file("streamgraph"))
 	.settings(commonSettings: _*)
-	.settings(libraryDependencies ++= testDependencies)
+	.dependsOn(persist)
 
 lazy val persist = project.in(file("persist"))
 	.settings(commonSettings: _*)
 
 lazy val root = project.in(file("."))
 	.settings(commonSettings: _*)
-	.aggregate(common, persist)
+	.settings(libraryDependencies ++= testDependencies)
+	.dependsOn(streamgraph, persist)
+	.aggregate(streamgraph, persist)
 
