@@ -17,7 +17,10 @@ lazy val commonSettings = Seq(
 		"net.databinder.dispatch"				%%	"dispatch-core" 						%			"0.11.2",
 		"net.databinder.dispatch"				%%	"dispatch-json4s-native" 		%			"0.11.2",
 		"com.fasterxml.jackson.module"	%% 	"jackson-module-scala"			%			"2.4.2",
-		"org.scalaz"										%%	"scalaz-core"								%			"7.2.0-M3"
+		"org.scalaz"										%%	"scalaz-core"								%			"7.2.0-M4",
+		"net.debasishg"									%% 		"redisclient"							%			"3.0",
+		"org.scalactic"									%%		"scalactic"								%			"3.0.0-SNAP8",
+		"org.scalatest"									%%		"scalatest"								%			"3.0.0-SNAP8"		% "test"
 	),
 	javacOptions in Compile ++= Seq("-target", "1.8", "-source", "1.8"),
 	resolvers ++= Seq(
